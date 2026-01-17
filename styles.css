@@ -1,0 +1,245 @@
+:root{
+  --bg-01: #0f1724;
+  --card: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
+  --muted: #9aa4b2;
+  --text: #e6eef6;
+  --accent: #4f8cff;
+  --accent-600: #2b6ef6;
+  --success: #22c55e;
+  --danger: #ff6b6b;
+  --glass-border: rgba(255,255,255,0.04);
+  --radius: 14px;
+  --pad: 20px;
+  --shadow: 0 10px 30px rgba(2,6,23,0.55);
+  --max-width: 1080px;
+  --ui-font: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Reset y base */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font-family:var(--ui-font);
+  background:
+    radial-gradient(900px 400px at 10% 10%, rgba(79,140,255,0.06), transparent 12%),
+    radial-gradient(600px 300px at 90% 90%, rgba(43,110,246,0.04), transparent 14%),
+    var(--bg-01);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:28px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+}
+
+/* Contenedor principal */
+.container{
+  width:100%;
+  max-width:var(--max-width);
+  background:var(--card);
+  border:1px solid var(--glass-border);
+  border-radius:calc(var(--radius) + 2px);
+  padding:24px;
+  box-shadow:var(--shadow);
+  display:block;
+  gap:22px;
+}
+
+/* Header */
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:6px}
+h1{margin:0;font-size:22px;letter-spacing:-0.2px}
+.intro{margin:6px 0 0;color:var(--muted);font-size:14px;max-width:62ch;}
+
+/* Layout */
+.layout{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+@media(max-width:980px){.layout{grid-template-columns:1fr}}
+
+/* Panel / tarjeta */
+.panel{
+  background: linear-gradient(180deg, rgba(255,255,255,0.014), rgba(255,255,255,0.01));
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius);
+  padding:var(--pad);
+  backdrop-filter: blur(6px) saturate(110%);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+}
+
+/* Formularios y controles */
+.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+label.small{font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+select,input[type="number"],input[type="text"]{
+  -webkit-appearance:none;appearance:none;
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
+  color:var(--text);
+  border:1px solid rgba(255,255,255,0.03);
+  padding:10px 12px;border-radius:10px;font-size:15px;min-height:44px;
+  transition:box-shadow .16s ease, transform .12s ease;
+}
+select:focus,input[type="number"]:focus,input[type="text"]:focus{
+  outline:none;box-shadow:0 6px 20px rgba(79,140,255,0.12);border-color:var(--accent-600);transform:translateY(-1px);
+}
+
+/* Ajuste select oscuro y opciones legibles */
+select#difficulty {
+  background-color: #1a2332;
+  color: #e6eef6;
+}
+select#difficulty option {
+  background-color: #0f1724;
+  color: #e6eef6;
+}
+select#difficulty option:disabled {
+  color: #6b7280;
+  background-color: #0f1724;
+  opacity: 0.7;
+}
+
+/* Input principal */
+.row{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+input.guess{
+  flex:1;font-size:16px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+  background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));color:var(--text);min-height:48px;
+  transition:box-shadow .14s ease, transform .12s ease;
+}
+input.guess:focus{outline:none;box-shadow:0 10px 30px rgba(79,140,255,0.10);border-color:var(--accent);transform:translateY(-2px)}
+
+/* Botones */
+button{
+  background:linear-gradient(180deg,var(--accent),var(--accent-600));
+  color:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer;min-height:44px;
+  box-shadow:0 8px 18px rgba(43,110,246,0.12);transition:transform .08s ease,box-shadow .12s ease,opacity .12s ease;
+}
+button:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(43,110,246,0.16)}
+button:active{transform:translateY(0);box-shadow:0 8px 18px rgba(43,110,246,0.10)}
+button.alt{
+  background:linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.01));
+  color:var(--accent);border:1px solid rgba(79,140,255,0.08);box-shadow:none;
+}
+button.ghost{background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--muted);padding:8px 10px}
+.smallbtn{padding:6px 8px;border-radius:8px;font-size:13px}
+
+/* Status */
+.status{
+  min-height:58px;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
+  border:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;gap:12px;font-size:15px;color:var(--text);
+}
+.status.success{border-color: rgba(34,197,94,0.18);box-shadow:0 8px 30px rgba(34,197,94,0.06)}
+.status.danger{border-color: rgba(255,107,107,0.14);box-shadow:0 8px 30px rgba(255,107,107,0.05)}
+
+/* Meta info */
+.meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;color:var(--muted);font-size:14px}
+.meta strong{color:var(--text)}
+
+/* Aside / records */
+aside.panel{display:flex;flex-direction:column;gap:12px;position:relative}
+.records{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.records > div{
+  display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:10px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.006), rgba(255,255,255,0.004));
+  border:1px solid rgba(255,255,255,0.02);color:var(--muted);font-size:13px;
+}
+
+/* Notas y recomendaciones */
+.rec{font-size:13px;color:var(--muted)}
+
+/* Focus visible accesible */
+:focus{outline:none;box-shadow:0 6px 24px rgba(79,140,255,0.12);border-radius:8px}
+
+/* Screen-reader only */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Microinteracciones */
+.flash{animation:flash .9s ease}
+@keyframes flash{0%{transform:scale(1);background:rgba(79,140,255,0.06)}50%{transform:scale(1.01)}100%{transform:scale(1);background:transparent}}
+
+/* Responsividad fina */
+@media(max-width:560px){
+  .container{padding:16px}
+  .controls{gap:8px}
+  button{padding:10px 12px;font-size:14px}
+  .meta{font-size:13px}
+}
+
+/* Utilidades */
+.hidden{display:none!important}
+.center{display:flex;align-items:center;justify-content:center}
+
+/* Autor */
+.author-mention{
+  margin-top:24px;
+  padding:12px 16px;
+  border-radius:10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.006));
+  border: 1px solid rgba(255,255,255,0.04);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+}
+
+.author-text{
+  margin:0;
+  color: #cbd5e1;
+  font-size:13px;
+  text-align:center;
+  max-width:76ch;
+}
+
+.author-name{
+  color: #e6eef6;
+  font-weight:700;
+  background: linear-gradient(90deg, rgba(79,140,255,0.14), rgba(43,110,246,0.08));
+  padding:4px 8px;
+  border-radius:8px;
+  margin-left:6px;
+}
+
+/* Variante compacta para footer pequeño */
+.author-mention.small{
+  padding:8px 10px;
+  border-radius:8px;
+  font-size:12px;
+}
+
+/* Adaptación responsive */
+@media(max-width:560px){
+  .author-text{ font-size:12px; padding:0 6px; }
+  .author-name{ padding:3px 6px; font-size:13px; }
+}
+
+
+
+/* Contenedor del logo en la cabecera */
+.logo-link{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:inherit;
+}
+
+/* Imagen del logo (archivo: logo.png en la misma carpeta que index.html) */
+.site-logo{
+  width:56px;
+  height:auto;
+  display:block;
+  border-radius:8px;
+  filter: drop-shadow(0 8px 20px rgba(43,110,246,0.12));
+  transition:transform .12s ease, filter .12s ease;
+}
+.logo-link:hover .site-logo{ transform:translateY(-3px); filter: drop-shadow(0 12px 28px rgba(43,110,246,0.18)); }
+
+/* Texto junto al logo */
+.site-title{
+  font-weight:700;
+  font-size:18px;
+  letter-spacing:0.4px;
+  color:var(--text, #e6eef6);
+}
+
+/* Móvil: ocultar texto y reducir logo */
+@media(max-width:560px){
+  .site-logo{ width:40px; }
+  .site-title{ display:none; }
+}

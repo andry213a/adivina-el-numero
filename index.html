@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <link rel="icon" href="logo.png" sizes="any">
+<link rel="apple-touch-icon" href="logo.png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Adivina El Número</title>
+
+  <!-- Enlaza el CSS externo -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container" id="main" role="main">
+    <header>
+      <div>
+        <a href="/" class="logo-link" aria-label="Adivina El Número — Inicio">
+  <img src="logo.png" alt="Adivina El Número" class="site-logo">
+  <span class="site-title">Adivina El Número</span>
+     </a>
+        <h1 id="title">Adivina El Número</h1>
+        <div class="intro">Bienvenido a Adivina El Número — modos desde Fácil hasta Dioses; juega con voz, recibe sugerencias automáticas, guarda récords y comparte tus mejores marcas. ¿Listo para el desafío?</div>
+      </div>
+      <div aria-hidden="true">
+        <button id="helpBtn" class="alt smallbtn" aria-haspopup="dialog">Ayuda</button>
+      </div>
+    </header>
+
+    <section class="layout" aria-label="Juego y controles">
+      <div>
+        <div class="panel" role="region" aria-labelledby="gameLabel">
+          <h2 id="gameLabel" class="sr-only">Área del juego</h2>
+
+          <div class="controls" role="form" aria-label="Configuración de juego">
+            <label for="difficulty" class="small">Modo</label>
+            <select id="difficulty" aria-label="Seleccionar modo de juego">
+              <option value="easy">Fácil — 1 .. 100</option>
+              <option value="normal">Normal — 1 .. 1,000</option>
+              <option value="hard">Difícil — 1 .. 10,000</option>
+              <option value="expert">Experto — 1 .. 100,000</option>
+              <option value="chosen">Elegido — 1 .. 1,000,000</option>
+              <option value="gods">Dioses — 1 .. 1,000,000,000</option>
+              <option value="infinite">Infinito — rango aleatorio</option>
+              <option value="multiverse">Multiverso — cambia cada 10 s</option>
+              <option value="prophet">Profeta — pistas crípticas</option>
+              <option value="chaos">Caos — cambia si fallas</option>
+              <option value="lightning">Relámpago — 10 s por intento</option>
+              <option value="sage">Sabio — pista cada 3 intentos</option>
+              <option value="simulation">Simulación — IA responde</option>
+              <option value="eco">Eco — repite la pista con ruido</option>
+              <option value="dark">Oscuro — sin rango ni intentos visibles</option>
+              <option value="master">Maestro — número según tu historial</option>
+            </select>
+
+            <label class="small" for="limitToggle" style="margin-left:6px">
+              <input id="limitToggle" type="checkbox" checked /> Limitar intentos
+            </label>
+
+            <label class="small" for="attempts">Máx intentos</label>
+            <input id="attempts" type="number" min="1" step="1" style="width:92px" aria-label="Máximo de intentos" />
+
+            <button id="startBtn" class="alt" aria-controls="status">Iniciar</button>
+          </div>
+
+          <div class="row">
+            <input id="guessInput" class="guess" type="text" inputmode="numeric" placeholder="Escribe tu número o usa voz" aria-label="Campo de suposición" disabled />
+            <button id="guessBtn" disabled aria-controls="status">Probar</button>
+            <button id="resetBtn" class="alt" disabled aria-controls="status">Reiniciar</button>
+            <button id="voiceBtn" class="ghost" title="Entrada por voz" aria-pressed="false">🎤 Voz</button>
+          </div>
+
+          <div id="status" class="status" role="status" aria-live="polite">Selecciona modo y presiona Iniciar.</div>
+
+          <div class="meta" aria-hidden="false">
+            <div>Rango: <strong id="rangeDisplay">—</strong></div>
+            <div>Intentos: <strong id="tries">0</strong></div>
+            <div>Máx intentos: <strong id="maxTries">—</strong></div>
+            <div>Última suposición: <strong id="lastGuess">—</strong></div>
+            <div>Sugerencia: <strong id="suggestion">—</strong></div>
+          </div>
+
+          <div class="rec" id="probability" aria-hidden="true"></div>
+
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <button id="shareBtn" class="alt" disabled aria-label="Compartir resultado">Compartir resultado</button>
+            <label class="small" for="soundToggle" style="display:flex;align-items:center;gap:6px">
+              <input id="soundToggle" type="checkbox" checked /> Sonidos
+            </label>
+            <button id="clearRecords" class="ghost" title="Borrar récords guardados">Borrar récords</button>
+          </div>
+        </div>
+
+        <footer style="margin-top:12px;display:flex;justify-content:space-between;gap:8px">
+          <div class="rec">Récords locales; comparte si ganas. Soporte voz y accesibilidad.</div>
+          <div id="version" class="rec">v2.0 — Local</div>
+       
+        </footer>
+      </div>
+
+      <aside class="panel" role="complementary" aria-labelledby="sideTitle">
+        <h2 id="sideTitle" style="margin:0 0 8px;font-size:16px">Récords y recomendaciones</h2>
+
+        <div>
+          <strong>Récords por modo</strong>
+          <div class="records" id="recordsList" aria-live="polite"></div>
+        </div>
+
+        <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.02)">
+
+        <div>
+          <strong>Recomendaciones rápidas</strong>
+          <ul style="margin:8px 0 0 18px;padding:0;color:#cbd5e1">
+            <li>Aumenta intentos en modos extremos o desactiva límite.</li>
+            <li>Usa la sugerencia (punto medio) si estás atascado.</li>
+            <li>Activa voces y sonidos para feedback.</li>
+            <li>Los récords se guardan en tu navegador.</li>
+          </ul>
+        </div>
+
+        <hr style="margin:12px 0;border:none;border-top:1px solid rgba(255,255,255,0.02)">
+
+        <div>
+          <strong>Ayuda rápida</strong>
+          <p style="margin:8px 0 0;color:#cbd5e1;font-size:13px">Voz: di el número en español; ej. "cincuenta y dos". En modo Oscuro el rango se oculta para mayor desafío.</p>
+        </div>
+        
+<div>
+          <footer class="author-mention">
+  <p class="author-text">
+    Desarrollado por <span class="author-name">Andry</span> — creador de instructivos técnicos y apasionado por optimizar experiencias de juego.
+  </p>
+          </footer>
+</div>
+      </aside>
+    </section>
+  </main>
+
+  <dialog id="helpDialog" aria-labelledby="helpTitle">
+    <h3 id="helpTitle">Ayuda</h3>
+    <p>Instrucciones: elige modo, presiona Iniciar. Escribe un número o usa voz y pulsa Probar. Los modos avanzados añaden comportamientos especiales; los récords son locales.</p>
+    <menu style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+      <button id="closeHelp">Cerrar</button>
+    </menu>
+  </dialog>
+
+  <!-- Sonidos fallback (WebAudio generará tonos) -->
+  <audio id="succeedSound" src="" preload="auto"></audio>
+  <audio id="failSound" src="" preload="auto"></audio>
+
+  <!-- Enlaza el JS externo -->
+  <script src="script.js" defer></script>
+</body>
+</html>
